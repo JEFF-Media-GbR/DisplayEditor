@@ -1,13 +1,13 @@
-package com.jeffmedia.displayeditor;
+package com.jeffmedia.displayeditor.util;
 
 import org.bukkit.event.player.PlayerItemHeldEvent;
 
-public enum ScrollDirection {
+public enum ParticleGenerator {
     UP,
     DOWN,
     NONE;
 
-    public static ScrollDirection fromEvent(PlayerItemHeldEvent event) {
+    public static ParticleGenerator fromEvent(PlayerItemHeldEvent event) {
         int old = event.getPreviousSlot();
         int current = event.getNewSlot();
 

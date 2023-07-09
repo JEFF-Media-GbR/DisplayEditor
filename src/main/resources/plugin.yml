@@ -1,4 +1,4 @@
-name: DisplayEditor
+name: DisplayEditorPlugin
 version: '${version}'
-main: com.jeffmedia.displayeditor.DisplayEditor
+main: com.jeffmedia.displayeditor.DisplayEditorPlugin
 api-version: '1.19'

@@ -1,6 +1,11 @@
-package com.jeffmedia.displayeditor;
+package com.jeffmedia.displayeditor.editors;
 
-import com.jeffmedia.displayeditor.editors.ScaleEditor;
+import com.jeffmedia.displayeditor.editors.values.RotationEditor;
+import com.jeffmedia.displayeditor.editors.values.ScaleEditor;
+import com.jeffmedia.displayeditor.editors.values.TranslationEditor;
+import com.jeffmedia.displayeditor.util.QuaternionfAxis;
+import com.jeffmedia.displayeditor.util.RotationSide;
+import com.jeffmedia.displayeditor.util.Vec3fAxis;
 import lombok.Getter;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Player;
@@ -14,9 +19,24 @@ public class DisplayEditor {
     private static final List<FloatEditor> editors = new ArrayList<>();
 
     static {
-        editors.add(new ScaleEditor(Axis.X));
-        editors.add(new ScaleEditor(Axis.Y));
-        editors.add(new ScaleEditor(Axis.Z));
+
+        // Scale X, Y, Z
+        for(Vec3fAxis axis : Vec3fAxis.values()) {
+            editors.add(new ScaleEditor(axis));
+        }
+
+        // Translation X, Y, Z
+        for(Vec3fAxis axis : Vec3fAxis.values()) {
+            editors.add(new TranslationEditor(axis));
+        }
+
+        // Rotation Left X, Y, Z, W, Right X, Y, Z, W
+        for(RotationSide side : RotationSide.values()) {
+            for(QuaternionfAxis axis : QuaternionfAxis.values()) {
+                editors.add(new RotationEditor(side, axis));
+            }
+        }
+
     }
 
     @Getter

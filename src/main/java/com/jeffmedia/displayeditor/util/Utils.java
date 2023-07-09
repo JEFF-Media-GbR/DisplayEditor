@@ -1,4 +1,4 @@
-package com.jeffmedia.displayeditor;
+package com.jeffmedia.displayeditor.util;
 
 import lombok.experimental.UtilityClass;
 import org.bukkit.Color;

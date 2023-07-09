@@ -1,4 +1,4 @@
-package com.jeffmedia.displayeditor;
+package com.jeffmedia.displayeditor.editors;
 
 import org.bukkit.entity.Display;
 
