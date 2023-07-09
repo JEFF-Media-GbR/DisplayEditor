@@ -1,0 +1,4 @@
+name: DisplayEditor
+version: '${version}'
+main: com.jeffmedia.displayeditor.DisplayEditor
+api-version: '1.19'
