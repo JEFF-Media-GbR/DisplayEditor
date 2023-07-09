@@ -1,7 +1,7 @@
 package com.jeffmedia.displayeditor;
 
 import com.jeffmedia.displayeditor.editors.DisplayEditor;
-import com.jeffmedia.displayeditor.editors.FloatEditor;
+import com.jeffmedia.displayeditor.editors.ValueEditor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -32,11 +32,19 @@ public class DisplayEditorTask implements Runnable {
         }
     }
 
-    private static String getEditorActionBarMessage(FloatEditor editor, Display display, boolean enabled) {
+    private static String getEditorActionBarMessage(DisplayEditor displayEditor, ValueEditor<?> valueEditor, boolean enabled) {
         ChatColor colorTitle = enabled ? ChatColor.GOLD : ChatColor.GRAY;
         ChatColor colorValue = enabled ? ChatColor.YELLOW : ChatColor.WHITE;
-        String formattedValue = String.format("%.2f", editor.getValue(display));
-        return colorTitle + editor.getName() + ChatColor.RESET + colorTitle + ": " + colorValue + formattedValue;
+        String formattedValue;
+        Object value = valueEditor.getValue(displayEditor);
+        if(value instanceof Float) {
+            formattedValue = String.format("%.2f", value);
+        } else if(value instanceof Integer) {
+            formattedValue = String.format("%d", value);
+        } else {
+            formattedValue = value.toString();
+        }
+        return colorTitle + valueEditor.getName() + ChatColor.RESET + colorTitle + ": " + colorValue + formattedValue;
     }
 
     private static String getActionBarMessage(DisplayEditor editor, int offset) {
@@ -45,8 +53,8 @@ public class DisplayEditorTask implements Runnable {
             boolean enabled = i == 0;
             boolean isLeftFromCurrent = i < 0;
             boolean isLast = i == offset;
-            FloatEditor subEditor = editor.getEditorFromCurrentOffset(i);
-            sb.append(getEditorActionBarMessage(subEditor, editor.getEntity(), enabled));
+            ValueEditor<?> subEditor = editor.getEditorFromCurrentOffset(i);
+            sb.append(getEditorActionBarMessage(editor, subEditor, enabled));
             if(!isLast) {
                 sb.append(ChatColor.DARK_GRAY).append(" ");
                 if(isLeftFromCurrent) {

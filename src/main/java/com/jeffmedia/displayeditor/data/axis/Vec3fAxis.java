@@ -1,4 +1,4 @@
-package com.jeffmedia.displayeditor.util;
+package com.jeffmedia.displayeditor.data.axis;
 
 import org.joml.Vector3f;
 

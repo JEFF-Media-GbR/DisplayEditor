@@ -1,4 +1,4 @@
-package com.jeffmedia.displayeditor.util;
+package com.jeffmedia.displayeditor.data;
 
 import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;

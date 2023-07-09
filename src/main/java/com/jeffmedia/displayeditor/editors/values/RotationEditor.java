@@ -1,13 +1,13 @@
 package com.jeffmedia.displayeditor.editors.values;
 
-import com.jeffmedia.displayeditor.editors.FloatEditor;
-import com.jeffmedia.displayeditor.util.QuaternionfAxis;
-import com.jeffmedia.displayeditor.util.RotationSide;
-import org.bukkit.entity.Display;
+import com.jeffmedia.displayeditor.editors.DisplayEditor;
+import com.jeffmedia.displayeditor.editors.ValueEditor;
+import com.jeffmedia.displayeditor.data.axis.QuaternionfAxis;
+import com.jeffmedia.displayeditor.data.RotationSide;
+import com.jeffmedia.displayeditor.data.ScrollDirection;
 import org.bukkit.util.Transformation;
-import org.joml.Quaternionf;
 
-public class RotationEditor implements FloatEditor {
+public class RotationEditor implements ValueEditor<Float> {
 
     private final RotationSide rotationSide;
     private final QuaternionfAxis quaternionfAxis;
@@ -18,15 +18,15 @@ public class RotationEditor implements FloatEditor {
     }
 
     @Override
-    public float getValue(Display display) {
-        return quaternionfAxis.getValue(rotationSide.getFromTransformation(display.getTransformation()));
+    public Float getValue(DisplayEditor editor) {
+        return quaternionfAxis.getValue(rotationSide.getFromTransformation(editor.getEntity().getTransformation()));
     }
 
     @Override
-    public void setValue(Display display, float value) {
-        Transformation transformation = display.getTransformation();
-        quaternionfAxis.setValue(rotationSide.getFromTransformation(transformation), value);
-        display.setTransformation(transformation);
+    public void change(DisplayEditor editor, ScrollDirection direction) {
+        Transformation transformation = editor.getEntity().getTransformation();
+        quaternionfAxis.setValue(rotationSide.getFromTransformation(transformation), getValue(editor) + direction.getMultiplier() * editor.getStep());
+        editor.getEntity().setTransformation(transformation);
     }
 
     @Override

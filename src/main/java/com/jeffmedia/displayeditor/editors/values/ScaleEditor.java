@@ -1,11 +1,12 @@
 package com.jeffmedia.displayeditor.editors.values;
 
-import com.jeffmedia.displayeditor.editors.FloatEditor;
-import com.jeffmedia.displayeditor.util.Vec3fAxis;
-import org.bukkit.entity.Display;
+import com.jeffmedia.displayeditor.editors.DisplayEditor;
+import com.jeffmedia.displayeditor.editors.ValueEditor;
+import com.jeffmedia.displayeditor.data.ScrollDirection;
+import com.jeffmedia.displayeditor.data.axis.Vec3fAxis;
 import org.bukkit.util.Transformation;
 
-public class ScaleEditor implements FloatEditor {
+public class ScaleEditor implements ValueEditor<Float> {
 
     private final Vec3fAxis vec3fAxis;
 
@@ -14,15 +15,15 @@ public class ScaleEditor implements FloatEditor {
     }
 
     @Override
-    public float getValue(Display display) {
-        return vec3fAxis.getValue(display.getTransformation().getScale());
+    public Float getValue(DisplayEditor editor) {
+        return vec3fAxis.getValue(editor.getEntity().getTransformation().getScale());
     }
 
     @Override
-    public void setValue(Display display, float value) {
-        Transformation transformation = display.getTransformation();
-        vec3fAxis.setValue(transformation.getScale(), value);
-        display.setTransformation(transformation);
+    public void change(DisplayEditor editor, ScrollDirection direction) {
+        Transformation transformation = editor.getEntity().getTransformation();
+        vec3fAxis.setValue(transformation.getScale(), getValue(editor) + direction.getMultiplier() * editor.getStep());
+        editor.getEntity().setTransformation(transformation);
     }
 
     @Override
