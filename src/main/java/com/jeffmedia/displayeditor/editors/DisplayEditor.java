@@ -1,10 +1,10 @@
 package com.jeffmedia.displayeditor.editors;
 
+import com.jeffmedia.displayeditor.data.ScrollDirection;
 import com.jeffmedia.displayeditor.data.axis.LocationdAxis;
 import com.jeffmedia.displayeditor.editors.values.*;
 import com.jeffmedia.displayeditor.data.axis.QuaternionfAxis;
 import com.jeffmedia.displayeditor.data.RotationSide;
-import com.jeffmedia.displayeditor.data.ScrollDirection;
 import com.jeffmedia.displayeditor.data.axis.Vec3fAxis;
 import lombok.Getter;
 import org.bukkit.entity.Display;

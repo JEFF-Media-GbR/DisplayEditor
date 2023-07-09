@@ -25,7 +25,7 @@ public class DisplayEditorTask implements Runnable {
         for(DisplayEditor editor : plugin.getEditors()) {
             Player player = editor.getPlayer();
 
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getActionBarMessage(editor, 1)));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(getActionBarMessage(editor, 2)));
 
             //BoundingBox hitbox = display.getBoundingBox();
             //Utils.showOutline(player, hitbox);
@@ -37,7 +37,7 @@ public class DisplayEditorTask implements Runnable {
         ChatColor colorValue = enabled ? ChatColor.YELLOW : ChatColor.WHITE;
         String formattedValue;
         Object value = valueEditor.getValue(displayEditor);
-        if(value instanceof Float) {
+        if(value instanceof Float || value instanceof Double) {
             formattedValue = String.format("%.2f", value);
         } else if(value instanceof Integer) {
             formattedValue = String.format("%d", value);

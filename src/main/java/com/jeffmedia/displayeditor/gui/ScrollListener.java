@@ -1,16 +1,17 @@
-package com.jeffmedia.displayeditor;
+package com.jeffmedia.displayeditor.gui;
 
+import com.jeffmedia.displayeditor.DisplayEditorPlugin;
 import com.jeffmedia.displayeditor.editors.DisplayEditor;
-import com.jeffmedia.displayeditor.util.ParticleGenerator;
+import com.jeffmedia.displayeditor.data.ScrollDirection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 
-public class DisplayEditorListener implements Listener {
+public class ScrollListener implements Listener {
 
     private final DisplayEditorPlugin plugin;
 
-    public DisplayEditorListener(DisplayEditorPlugin plugin) {
+    public ScrollListener(DisplayEditorPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -23,7 +24,7 @@ public class DisplayEditorListener implements Listener {
         }
         event.setCancelled(true);
         boolean isShift = event.getPlayer().isSneaking();
-        ParticleGenerator direction = ParticleGenerator.fromEvent(event);
+        ScrollDirection direction = ScrollDirection.fromEvent(event);
 
         if (isShift) {
             switch (direction) {

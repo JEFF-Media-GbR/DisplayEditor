@@ -1,10 +1,10 @@
 package com.jeffmedia.displayeditor.editors.values;
 
+import com.jeffmedia.displayeditor.data.ScrollDirection;
 import com.jeffmedia.displayeditor.editors.DisplayEditor;
 import com.jeffmedia.displayeditor.editors.ValueEditor;
 import com.jeffmedia.displayeditor.data.axis.QuaternionfAxis;
 import com.jeffmedia.displayeditor.data.RotationSide;
-import com.jeffmedia.displayeditor.data.ScrollDirection;
 import org.bukkit.util.Transformation;
 
 public class RotationEditor implements ValueEditor<Float> {

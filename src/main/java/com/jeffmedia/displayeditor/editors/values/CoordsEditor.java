@@ -1,9 +1,9 @@
 package com.jeffmedia.displayeditor.editors.values;
 
+import com.jeffmedia.displayeditor.data.ScrollDirection;
 import com.jeffmedia.displayeditor.data.axis.LocationdAxis;
 import com.jeffmedia.displayeditor.editors.DisplayEditor;
 import com.jeffmedia.displayeditor.editors.ValueEditor;
-import com.jeffmedia.displayeditor.data.ScrollDirection;
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
