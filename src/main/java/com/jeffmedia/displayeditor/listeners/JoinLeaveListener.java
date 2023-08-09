@@ -16,11 +16,11 @@ public class JoinLeaveListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        plugin.getPlayerInventoryManager().restore(event.getPlayer());
+        plugin.getGuiManager().restore(event.getPlayer());
     }
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        plugin.getPlayerInventoryManager().restore(event.getPlayer());
+        plugin.endEditSession(event.getPlayer());
     }
 }

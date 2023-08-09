@@ -65,11 +65,6 @@ public class DisplayEditor {
     public DisplayEditor(Display entity, Player player) {
         this.entity = entity;
         this.player = player;
-        for (int i = 0; i < 9; i++) {
-            hotbar[i] = player.getInventory().getItem(i);
-            player.getInventory().setItem(i, null);
-        }
-        player.getInventory().setHeldItemSlot(4);
     }
 
     public ValueEditor<?> getCurrentEditor() {
